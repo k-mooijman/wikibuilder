@@ -1,5 +1,9 @@
 package info.mooijman;
 
+import info.mooijman.action.Action;
+import info.mooijman.action.GitActionImpl;
+import info.mooijman.action.HtmlActionImpl;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -13,6 +17,30 @@ public class App {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
+
+		Action a1 = new GitActionImpl();
+		GitActionImpl g1 = new GitActionImpl();
+
+
+
+
+		DirectoryWalker walker = new DirectoryWalker(new GitActionImpl());
+		DirectoryWalker walker2 = new DirectoryWalker(new HtmlActionImpl());
+
+
+		int getal1 = 1;
+		int getal2 = 2;
+
+		int getal = getal1+getal2;
+
+
+
+
+
+
+
+
 	}
 
 public static void listFiles(){
