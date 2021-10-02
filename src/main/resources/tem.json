@@ -1,0 +1,200 @@
+{
+  "dir0" : {
+    "name" : "a00",
+    "content" : {
+      "dir0" : {
+        "name" : "01",
+        "content" : {
+          "dir0" : {
+            "name" : "A",
+            "content" : { }
+          },
+          "dir1" : {
+            "name" : "B",
+            "content" : { }
+          },
+          "dir2" : {
+            "name" : "C",
+            "content" : { }
+          },
+          "dir3" : {
+            "name" : "D",
+            "content" : { }
+          },
+          "dir4" : {
+            "name" : "E",
+            "content" : { }
+          },
+          "dir5" : {
+            "name" : "F",
+            "content" : { }
+          }
+        }
+      },
+      "dir1" : {
+        "name" : "02",
+        "content" : {
+          "dir0" : {
+            "name" : "A",
+            "content" : { }
+          },
+          "dir1" : {
+            "name" : "B",
+            "content" : { }
+          },
+          "dir2" : {
+            "name" : "C",
+            "content" : { }
+          },
+          "dir3" : {
+            "name" : "D",
+            "content" : { }
+          },
+          "dir4" : {
+            "name" : "E",
+            "content" : { }
+          },
+          "dir5" : {
+            "name" : "F",
+            "content" : { }
+          }
+        }
+      },
+      "dir2" : {
+        "name" : "03",
+        "content" : {
+          "dir0" : {
+            "name" : "A",
+            "content" : { }
+          },
+          "dir1" : {
+            "name" : "B",
+            "content" : { }
+          },
+          "dir2" : {
+            "name" : "C",
+            "content" : { }
+          },
+          "dir3" : {
+            "name" : "D",
+            "content" : { }
+          },
+          "dir4" : {
+            "name" : "E",
+            "content" : { }
+          },
+          "dir5" : {
+            "name" : "F",
+            "content" : { }
+          }
+        }
+      }
+    }
+  },
+  "dir1" : {
+    "name" : "a01",
+    "content" : {
+      "dir0" : {
+        "name" : "01",
+        "content" : {
+          "dir0" : {
+            "name" : "A",
+            "content" : { }
+          },
+          "dir1" : {
+            "name" : "B",
+            "content" : { }
+          },
+          "dir2" : {
+            "name" : "C",
+            "content" : { }
+          },
+          "dir3" : {
+            "name" : "D",
+            "content" : { }
+          },
+          "dir4" : {
+            "name" : "E",
+            "content" : { }
+          },
+          "dir5" : {
+            "name" : "F",
+            "content" : { }
+          }
+        }
+      }
+    }
+  },
+  "dir2" : {
+    "name" : "a02",
+    "content" : {
+      "dir0" : {
+        "name" : "01",
+        "content" : {
+          "dir0" : {
+            "name" : "A",
+            "content" : { }
+          },
+          "dir1" : {
+            "name" : "B",
+            "content" : { }
+          },
+          "dir2" : {
+            "name" : "C",
+            "content" : { }
+          },
+          "dir3" : {
+            "name" : "D",
+            "content" : {
+              "file0" : "file02-01-d"
+            }
+          },
+          "dir4" : {
+            "name" : "E",
+            "content" : { }
+          },
+          "dir5" : {
+            "name" : "F",
+            "content" : { }
+          }
+        }
+      }
+    }
+  },
+  "dir3" : {
+    "name" : "a03",
+    "content" : {
+      "dir0" : {
+        "name" : "01",
+        "content" : {
+          "dir0" : {
+            "name" : "A",
+            "content" : { }
+          },
+          "dir1" : {
+            "name" : "B",
+            "content" : { }
+          },
+          "dir2" : {
+            "name" : "C",
+            "content" : { }
+          },
+          "dir3" : {
+            "name" : "D",
+            "content" : { }
+          },
+          "dir4" : {
+            "name" : "E",
+            "content" : { }
+          },
+          "dir5" : {
+            "name" : "F",
+            "content" : { }
+          }
+        }
+      },
+      "file1" : "file01"
+    }
+  },
+  "file4" : "basefile"
+}

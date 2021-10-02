@@ -1,2 +1,7 @@
-/home/kasper/development/kasper/cleanJavaProject/src/main/java/info/mooijman/App.java
-/home/kasper/development/kasper/cleanJavaProject/src/main/java/info/mooijman/HtmlToPdf.java
+/home/kasper/development/colaborate/bas/wikibuilder/src/main/java/info/mooijman/action/ActionBase.java
+/home/kasper/development/colaborate/bas/wikibuilder/src/main/java/info/mooijman/DirectoryWalker.java
+/home/kasper/development/colaborate/bas/wikibuilder/src/main/java/info/mooijman/action/HtmlActionImpl.java
+/home/kasper/development/colaborate/bas/wikibuilder/src/main/java/info/mooijman/action/Action.java
+/home/kasper/development/colaborate/bas/wikibuilder/src/main/java/info/mooijman/action/GitActionImpl.java
+/home/kasper/development/colaborate/bas/wikibuilder/src/main/java/info/mooijman/HtmlToPdf.java
+/home/kasper/development/colaborate/bas/wikibuilder/src/main/java/info/mooijman/App.java
