@@ -1,11 +1,18 @@
 package info.mooijman.action;
 
+import io.vertx.core.json.JsonObject;
+
+import java.io.File;
+
 public interface Action {
 
-    public void execute(String dir);
-    public void setDir();
-    public String filter();
+    void execute(String dir);
 
+    void setDir();
+
+    String filter();
+
+    boolean listChildrenToDisk(File dir, JsonObject children);
 
 
 }

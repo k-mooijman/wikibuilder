@@ -40,7 +40,9 @@ public class DirectoryWalker {
             }
 
         }
+//       save tree to disk
 
+        action.listChildrenToDisk(directory,tree);
         return tree;
     }
 }

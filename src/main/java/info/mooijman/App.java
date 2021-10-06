@@ -8,6 +8,7 @@ import io.vertx.core.json.JsonObject;
 import java.io.File;
 import java.io.IOException;
 
+
 public class App {
 	public static void main(String[] args) {
 		System.out.println("This will be printed");
@@ -25,8 +26,8 @@ public class App {
 
 		System.out.println("Start Process");
 
-		DirectoryWalker walker = new DirectoryWalker(new GitActionImpl());
-//		DirectoryWalker walker2 = new DirectoryWalker(new HtmlActionImpl());
+//		DirectoryWalker walker = new DirectoryWalker(new GitActionImpl());
+		DirectoryWalker walker = new DirectoryWalker(new HtmlActionImpl());
 
 		File dir = new File("../wikibase");
 
