@@ -2,6 +2,7 @@ package info.mooijman;
 
 import info.mooijman.action.Action;
 import info.mooijman.action.GitActionImpl;
+import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 
 import java.io.File;
@@ -21,12 +22,16 @@ public class DirectoryWalker {
     }
     public JsonObject start(File directory ){
         JsonObject tree = new JsonObject();
+        JsonArray files = new JsonArray();
+        JsonArray directories = new JsonArray();
 
         File[] listOfFiles = directory.listFiles();
         Arrays.sort(listOfFiles);
         for (int i = 0; i < listOfFiles.length; i++) {
             if (listOfFiles[i].isFile()) {
-                tree.put("file"+i,listOfFiles[i].getName());
+                JsonObject file = new JsonObject();
+                file.put("name",listOfFiles[i].getName());
+                files.add(file);
                 System.out.println("File " + listOfFiles[i].getName());
             } else if (listOfFiles[i].isDirectory()) {
                 System.out.println("Directory " + listOfFiles[i].getName());
@@ -35,13 +40,13 @@ public class DirectoryWalker {
                 JsonObject dirTree = walker.start(listOfFiles[i]);
                 subtree.put("name",listOfFiles[i].getName());
                 subtree.put("content",dirTree);
-                tree.put("dir"+i,subtree);
-
+                directories.add(subtree);
             }
 
         }
 //       save tree to disk
-
+        tree.put("files",files);
+        tree.put("directories",directories);
         action.listChildrenToDisk(directory,tree);
         return tree;
     }
