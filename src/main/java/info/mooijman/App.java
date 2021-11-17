@@ -2,7 +2,9 @@ package info.mooijman;
 
 import info.mooijman.action.Action;
 import info.mooijman.action.GitActionImpl;
+import info.mooijman.action.HtmlAction2Impl;
 import info.mooijman.action.HtmlActionImpl;
+import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 
 import java.io.File;
@@ -27,11 +29,17 @@ public class App {
 		System.out.println("Start Process");
 
 //		DirectoryWalker walker = new DirectoryWalker(new GitActionImpl());
-		DirectoryWalker walker = new DirectoryWalker(new HtmlActionImpl());
+//		DirectoryWalker walker = new DirectoryWalker(new HtmlActionImpl());
+		DirectoryWalker walker = new DirectoryWalker(new HtmlAction2Impl());
 
 		File dir = new File("../wikibase");
 
-		JsonObject tree = walker.start(dir);
+		JsonObject tree = null;
+		try {
+			tree = walker.start(dir,new JsonArray());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		System.out.println(tree.encodePrettily());
 
 		System.out.println("end Process");

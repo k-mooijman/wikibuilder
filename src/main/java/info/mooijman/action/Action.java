@@ -1,5 +1,6 @@
 package info.mooijman.action;
 
+import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 
 import java.io.File;
@@ -12,7 +13,7 @@ public interface Action {
 
     String filter();
 
-    boolean listChildrenToDisk(File dir, JsonObject children);
+    boolean listChildrenToDisk(File dir, JsonObject children, JsonArray stam);
 
 
 }

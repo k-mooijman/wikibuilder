@@ -33,7 +33,8 @@ public class HtmlActionImpl implements Action {
     }
 
     @Override
-    public boolean listChildrenToDisk(File dir, JsonObject children) {
+    public boolean listChildrenToDisk(File dir, JsonObject children,JsonArray stem) {
+
         String name = "index.html";
         String directory = dir.getAbsolutePath();
         try {
