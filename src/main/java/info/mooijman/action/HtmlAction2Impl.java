@@ -13,6 +13,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
+import static java.awt.font.OpenType.TAG_NAME;
+
 public class HtmlAction2Impl implements Action {
     @Override
     public void execute(String dir) {
@@ -34,7 +36,7 @@ public class HtmlAction2Impl implements Action {
 
         File input = new File(file);
         Document doc = Jsoup.parse(input, "UTF-8", "http://example.com/");
-        org.jsoup.nodes.Element navigationTag = doc.select("navigation").first();
+        org.jsoup.nodes.Element navigationTag = doc.select(String.valueOf(TAG_NAME)).first();
         if (navigationTag!=null) {
             navigationTag.text(navigation);
         }

@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import static java.awt.font.OpenType.TAG_NAME;
+
 public class DirectoryWalker {
     private final Action action;
 
@@ -36,7 +38,7 @@ public class DirectoryWalker {
             treeStem.put("indexContainsTag",false);
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
-                if (line.contains("<navigation>")) treeStem.put("indexContainsTag",true);
+                if (line.contains("<"+TAG_NAME+">")) treeStem.put("indexContainsTag",true);
             }
         } catch(FileNotFoundException e) {
             //handle this
