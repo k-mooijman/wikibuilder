@@ -44,7 +44,6 @@ public class HtmlActionImpl implements Action {
             myWriter.write("<a href=\"../index.html\">parent</a> \n\r");
             myWriter.write("<br> \n\r");
 
-
             JsonArray temp = children.getJsonArray("directories");
             for (Object o : temp ) {
                 if ( o instanceof JsonObject ) {
@@ -55,9 +54,6 @@ public class HtmlActionImpl implements Action {
 
                 }
             }
-
-
-
 
             myWriter.write("<hr> \n\r");
             myWriter.write("<pre> \n\r");

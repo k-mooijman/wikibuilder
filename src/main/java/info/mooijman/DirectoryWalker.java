@@ -24,8 +24,8 @@ public class DirectoryWalker {
         action.execute("dir");
     }
 
-    public JsonObject start(File directory, JsonArray stam) throws IOException {
-        JsonArray newStem = stam.copy();
+    public JsonObject start(File directory, JsonArray stem) throws IOException {
+        JsonArray newStem = stem.copy();
         JsonObject treeStem = new JsonObject();
         treeStem.put("dir",directory.getCanonicalPath());
         File f = new File(directory.getCanonicalPath()+File.separator+"index.html");
@@ -48,7 +48,6 @@ public class DirectoryWalker {
         JsonArray files = new JsonArray();
         JsonArray directories = new JsonArray();
 
-
         File[] listOfFiles = directory.listFiles();
         Arrays.sort(listOfFiles);
         for (int i = 0; i < listOfFiles.length; i++) {
@@ -69,7 +68,6 @@ public class DirectoryWalker {
                 subtree.put("content",dirTree);
                 directories.add(subtree);
             }
-
         }
 //       save tree to disk
         tree.put("files",files);

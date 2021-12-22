@@ -14,47 +14,32 @@ import java.io.IOException;
 public class App {
 	public static void main(String[] args) {
 		System.out.println("This will be printed");
-//		listFiles();
-//		HtmlToPdf htmlToPdf = new HtmlToPdf();
-//		try {
-//			htmlToPdf.test();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-
-
-//		Action a1 = new GitActionImpl();
-//		GitActionImpl g1 = new GitActionImpl();
 
 		System.out.println("Start Process");
 
 //		DirectoryWalker walker = new DirectoryWalker(new GitActionImpl());
 //		DirectoryWalker walker = new DirectoryWalker(new HtmlActionImpl());
-		DirectoryWalker walker = new DirectoryWalker(new HtmlAction2Impl());
+
+		HtmlAction2Impl htmlAction2 = new HtmlAction2Impl();
+
+		DirectoryWalker walker = new DirectoryWalker(htmlAction2);
 
 		File dir = new File("../wikibase");
 
 		JsonObject tree = null;
+
+
 		try {
 			tree = walker.start(dir,new JsonArray());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
+
+
 		System.out.println(tree.encodePrettily());
 
 		System.out.println("end Process");
-
-//		int getal1 = 1;
-//		int getal2 = 2;
-//
-//		int getal = getal1+getal2;
-
-
-
-
-
-
-
 
 	}
 
