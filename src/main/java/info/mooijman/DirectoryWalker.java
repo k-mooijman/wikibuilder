@@ -1,7 +1,6 @@
 package info.mooijman;
 
 import info.mooijman.action.Action;
-import info.mooijman.action.GitActionImpl;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 
@@ -11,7 +10,8 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 
-import static java.awt.font.OpenType.TAG_NAME;
+import static info.mooijman.Constants.*;
+
 
 public class DirectoryWalker {
     private final Action action;
@@ -38,7 +38,7 @@ public class DirectoryWalker {
             treeStem.put("indexContainsTag",false);
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
-                if (line.contains("<"+TAG_NAME+">")) treeStem.put("indexContainsTag",true);
+                if (line.contains("<"+NAVIGATION_TAG_NAME+">")) treeStem.put("indexContainsTag",true);
             }
         } catch(FileNotFoundException e) {
             //handle this

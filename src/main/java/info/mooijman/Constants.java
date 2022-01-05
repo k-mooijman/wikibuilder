@@ -1,5 +1,5 @@
 package info.mooijman;
 
-public class Constants {
-    public final String TAG_NAME = "navigation";
+public final class Constants {
+    public static final String NAVIGATION_TAG_NAME = "navigation";
 }
