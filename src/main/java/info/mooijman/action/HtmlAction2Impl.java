@@ -7,13 +7,14 @@ import org.apache.commons.io.FileUtils;
 import org.jdom2.JDOMException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
-import static info.mooijman.Constants.*;
+import static info.mooijman.Constants.NAVIGATION_TAG_NAME;
 
 
 public class HtmlAction2Impl implements Action {
@@ -34,12 +35,19 @@ public class HtmlAction2Impl implements Action {
 
     }
 
-    protected boolean writeNavigation(String file, String navigation ) throws IOException, JDOMException {
+
+    public Element createLink(String link, String text) {
+        return new Element("a").attr("href", link).text(text);
+    }
+
+
+    protected boolean writeToTagInFile(String file, String tag, Element navigation) throws IOException, JDOMException {
         File input = new File(file);
-        Document doc = Jsoup.parse(input, "UTF-8", "http://example.com/");
-        org.jsoup.nodes.Element navigationTag = doc.select(String.valueOf(NAVIGATION_TAG_NAME)).first();
-        if (navigationTag!=null) {
-            navigationTag.text(navigation);
+        Document doc = Jsoup.parse(input, "UTF-8");
+        org.jsoup.nodes.Element navigationTag = doc.select(String.valueOf(tag)).first();
+        if (navigationTag != null) {
+            navigationTag.empty();
+            navigationTag.appendChild(navigation);
         }
         FileUtils.writeStringToFile(input, doc.outerHtml(), StandardCharsets.UTF_8);
 
@@ -47,30 +55,37 @@ public class HtmlAction2Impl implements Action {
     }
 
     @Override
-    public boolean listChildrenToDisk(File dir, JsonObject children , JsonArray stem) {
+    public boolean listChildrenToDisk(File dir, JsonObject children, JsonArray stem) {
 
-        String index_file = dir+File.separator+"index.html";
-        JsonObject dirInfo =  stem.getJsonObject(stem.size()-1);
-        int i=stem.size()-1;
+        String index_file = dir + File.separator + "index.html";
+        JsonObject dirInfo = stem.getJsonObject(stem.size() - 1);
+        int i = stem.size() - 1;
         boolean hasTag = false;
         String firstParentWithTag = "";
         do {
             i--;
-            if(i>=0) {
+            if (i >= 0) {
                 JsonObject parentInfo = stem.getJsonObject(i);
                 hasTag = parentInfo.containsKey("indexContainsTag") && parentInfo.getBoolean("indexContainsTag");
                 firstParentWithTag = parentInfo.getString("dir");
-            }else{
+            } else {
                 hasTag = true;
             }
         } while (!hasTag);
 
 
-
-        boolean contains_index_with_tag =dirInfo.containsKey("indexContainsTag") && dirInfo.getBoolean("indexContainsTag");
-        if (contains_index_with_tag){
+        boolean contains_index_with_tag = dirInfo.containsKey("indexContainsTag") && dirInfo.getBoolean("indexContainsTag");
+        if (contains_index_with_tag) {
             try {
-                writeNavigation(index_file,"test");
+
+
+                Element nav = new Element("div");
+                nav.appendChild(createLink("../index.html", "oneDownAgain"));
+                nav.appendElement("br");
+                nav.appendChild(createLink("/index.html", "oneDownAll"));
+                String tag = NAVIGATION_TAG_NAME;
+
+                writeToTagInFile(index_file, tag, nav);
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (JDOMException e) {
@@ -79,16 +94,10 @@ public class HtmlAction2Impl implements Action {
         }
 
 
-
-
-
-
-
-
         String name = dir.getName() + ".json";
         String directory = dir.getAbsolutePath();
         try {
-            File myJsonFile = new File(directory+File.separator+name);
+            File myJsonFile = new File(directory + File.separator + name);
             FileWriter myWriter = new FileWriter(myJsonFile);
             myWriter.write("dirInfo");
             myWriter.write(dirInfo.encodePrettily());
@@ -107,7 +116,6 @@ public class HtmlAction2Impl implements Action {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-
 
 
 //        if ()
