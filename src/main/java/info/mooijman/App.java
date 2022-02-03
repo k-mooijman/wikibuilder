@@ -6,16 +6,22 @@ import info.mooijman.action.HtmlAction2Impl;
 import info.mooijman.action.HtmlActionImpl;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
 
 
 public class App {
-	public static void main(String[] args) {
-		System.out.println("This will be printed");
+	private static final Logger logger = LoggerFactory.getLogger(App.class);
 
-		System.out.println("Start Process");
+	public static void main(String[] args) {
+
+
+		logger.info("This will be printed");
+
+		logger.info("Start Process");
 
 //		DirectoryWalker walker = new DirectoryWalker(new GitActionImpl());
 //		DirectoryWalker walker = new DirectoryWalker(new HtmlActionImpl());
@@ -37,9 +43,9 @@ public class App {
 
 
 
-		System.out.println(tree.encodePrettily());
+		logger.info(tree.encodePrettily());
 
-		System.out.println("end Process");
+		logger.info("end Process");
 
 	}
 
@@ -48,11 +54,12 @@ public static void listFiles(){
 	File folder = new File(".");
 	File[] listOfFiles = folder.listFiles();
 
-	for (int i = 0; i < listOfFiles.length; i++) {
-		if (listOfFiles[i].isFile()) {
-			System.out.println("File " + listOfFiles[i].getName());
-		} else if (listOfFiles[i].isDirectory()) {
-			System.out.println("Directory " + listOfFiles[i].getName());
+	assert listOfFiles != null;
+	for (File listOfFile : listOfFiles) {
+		if (listOfFile.isFile()) {
+			logger.info("File {}", listOfFile.getName());
+		} else if (listOfFile.isDirectory()) {
+			logger.info("Directory {}", listOfFile.getName());
 		}
 	}
 

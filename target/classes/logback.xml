@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<!-- Skip logback's own logging -->
+	<statusListener class="ch.qos.logback.core.status.NopStatusListener"/>
+
+	<appender name="STDOUT-BASIC" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>TRACE</level>
+            <onMatch>DENY</onMatch>
+            <onMismatch>ACCEPT</onMismatch>
+        </filter>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+
+	<appender name="STDOUT-TRACE" class="ch.qos.logback.core.ConsoleAppender">
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>TRACE</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} [%thread] %-5level %logger{36} - ExtraInfo = %X{exi} -
+				%msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="FILE" class="ch.qos.logback.core.FileAppender">
+		<file>testFile.log</file>
+		<append>true</append>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>TRACE</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+		<encoder>
+			<pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} %-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="info.mooijman" level="DEBUG"/>
+
+	<logger name="io.vertx" level="DEBUG"/>
+	<logger name="i.vertx.ext.mail" level="INFO"/>
+	<logger name="i.v.e.mail" level="INFO"/>
+	<logger name="freemarker" level="INFO"/>
+	<logger name="io.netty" level="INFO"/>
+
+	<root level="WARN">
+		<appender-ref ref="STDOUT-BASIC"/>
+		<appender-ref ref="STDOUT-TRACE"/>
+		<appender-ref ref="FILE"/>
+	</root>
+</configuration>

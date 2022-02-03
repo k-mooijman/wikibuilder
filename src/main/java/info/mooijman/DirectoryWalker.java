@@ -1,25 +1,30 @@
 package info.mooijman;
 
 import info.mooijman.action.Action;
+import info.mooijman.action.HtmlAction2Impl;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 import static info.mooijman.Constants.*;
 
 
 public class DirectoryWalker {
-    private final Action action;
+    private static final Logger logger = LoggerFactory.getLogger(DirectoryWalker.class);
 
+    private final Action action;
     public DirectoryWalker(Action action) {
         this.action = action;
     }
-
 
     public void doStuff(){
         action.setDir();
@@ -31,7 +36,7 @@ public class DirectoryWalker {
         JsonObject treeStem = new JsonObject();
         treeStem.put("dir",directory.getCanonicalPath());
         File f = new File(directory.getCanonicalPath()+File.separator+"index.html");
-        System.out.println("File " + f.isFile());
+        logger.debug("File {}" , f.isFile());
         treeStem.put("containsIndex",(f.exists() && !f.isDirectory()));
         try {
             Scanner scanner = new Scanner(f);
@@ -41,7 +46,7 @@ public class DirectoryWalker {
                 if (line.contains("<"+NAVIGATION_TAG_NAME+">")) treeStem.put("indexContainsTag",true);
             }
         } catch(FileNotFoundException e) {
-            //handle this
+            e.printStackTrace();
         }
 
         newStem.add(treeStem);
@@ -60,9 +65,9 @@ public class DirectoryWalker {
                     file.put("indexContainsTag",treeStem.getValue("indexContainsTag"));
                 }
                 files.add(file);
-                System.out.println("File " + listOfFiles[i].getName());
+                logger.debug("File {}" , listOfFiles[i].getName());
             } else if (listOfFiles[i].isDirectory()) {
-                System.out.println("Directory " + listOfFiles[i].getName());
+                logger.debug("Directory {} " , listOfFiles[i].getName());
                 JsonObject subtree = new JsonObject();
                 DirectoryWalker walker = new DirectoryWalker(this.action);
                 JsonObject dirTree = walker.start(listOfFiles[i],newStem);
@@ -77,4 +82,7 @@ public class DirectoryWalker {
         action.listChildrenToDisk(directory,tree,newStem);
         return tree;
     }
+
+
+
 }

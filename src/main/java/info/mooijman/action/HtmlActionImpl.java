@@ -2,12 +2,16 @@ package info.mooijman.action;
 
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
 public class HtmlActionImpl implements Action {
+    private static final Logger logger = LoggerFactory.getLogger(HtmlActionImpl.class);
+
     @Override
     public void execute(String dir) {
 
@@ -62,11 +66,11 @@ public class HtmlActionImpl implements Action {
 
             myWriter.close();
         } catch (IOException e) {
-            System.out.println("An error occurred.");
+            logger.error("An error occurred.");
             e.printStackTrace();
         }
 
-        System.out.println("name " + name);
+        logger.debug("name {}" , name);
         return true;
     }
 
